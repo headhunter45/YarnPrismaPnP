@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextIndex"]
 }
 
 datasource db {
@@ -140,8 +141,6 @@ model film_text {
   film_id     Int     @id @db.UnsignedSmallInt
   title       String  @db.VarChar(255)
   description String? @db.Text
-
-  @@fulltext([title, description], map: "idx_title_description")
 }
 
 model inventory {
