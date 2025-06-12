@@ -1,0 +1,27 @@
+{
+  "name": "@tapper/prisma",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "generate": "pnpify prisma generate",
+    "seed": "pnpify ts-node prisma/seed.ts",
+    "reset": "pnpify prisma migrate reset --force"
+  },
+  "dependencies": {
+    "@prisma/client": "5.10.2",
+    "esprima": "^4.0.1",
+    "supports-color": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/esprima": "^4",
+    "@types/node": "^20.11.24",
+    "@yarnpkg/pnpify": "^4.1.5",
+    "prisma": "5.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma",
+    "output": "../../node_modules/.prisma/client"
+  }
+}

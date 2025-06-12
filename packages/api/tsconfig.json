@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./.yarn/__virtual__/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../prisma" }
+  ]
+} 

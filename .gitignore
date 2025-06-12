@@ -3,6 +3,22 @@
 
 # Dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage
+
+# Production
+dist
+build
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Logs
 *.log
@@ -17,3 +33,22 @@ pids
 *.pid.lock
 
 /src/generated/prisma
+
+# IDE
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Workspace specific
+packages/*/dist
+packages/*/.env
+packages/*/node_modules
