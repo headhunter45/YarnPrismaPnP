@@ -2,6 +2,7 @@
   "name": "@tapper/prisma",
   "version": "1.0.0",
   "private": true,
+  "main": "src/index.ts",
   "scripts": {
     "generate": "pnpify prisma generate",
     "seed": "pnpify ts-node prisma/seed.ts",
@@ -21,7 +22,6 @@
     "typescript": "^5.3.3"
   },
   "prisma": {
-    "schema": "prisma/schema.prisma",
-    "output": "../../node_modules/.prisma/client"
+    "schema": "prisma/schema.prisma"
   }
 }

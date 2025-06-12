@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { PrismaClient } from '@tapper/prisma/node_modules/.prisma/client';
+import { PrismaClient } from '@tapper/prisma';
 
 const app = express();
 const prisma = new PrismaClient();

@@ -205,6 +205,7 @@ __metadata:
   resolution: "@tapper/api@workspace:packages/api"
   dependencies:
     "@prisma/client": "npm:5.10.2"
+    "@tapper/prisma": "npm:1.0.0"
     "@types/cors": "npm:^2.8.17"
     "@types/express": "npm:^4.17.21"
     "@types/node": "npm:^20.11.24"
@@ -215,14 +216,12 @@ __metadata:
     ts-node-dev: "npm:^2.0.0"
     typescript: "npm:^5.3.3"
   dependenciesMeta:
-    .prisma:
-      unplugged: true
     "@prisma/client":
       unplugged: true
   languageName: unknown
   linkType: soft
 
-"@tapper/prisma@workspace:packages/prisma":
+"@tapper/prisma@npm:1.0.0, @tapper/prisma@workspace:packages/prisma":
   version: 0.0.0-use.local
   resolution: "@tapper/prisma@workspace:packages/prisma"
   dependencies:

@@ -1367,7 +1367,7 @@ const RAW_RUNTIME_STATE =
     ]],\
     ["@prisma/client", [\
       ["npm:5.10.2", {\
-        "packageLocation": "./.yarn/unplugged/@prisma-client-virtual-15e3ec54a0/node_modules/@prisma/client/",\
+        "packageLocation": "./.yarn/unplugged/@prisma-client-virtual-a5859fee3b/node_modules/@prisma/client/",\
         "packageDependencies": [\
           ["@prisma/client", "npm:5.10.2"]\
         ],\
@@ -1486,13 +1486,14 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@prisma/client", "virtual:610df937387d55a0dfda8686ec10292f6ebb96a478b1153e5b06b22e93e9f33e43958d0ea992b8e0ddc22f9a5ead5cb298f8dc8d288f105822ecf70a1336bee4#npm:5.10.2"],\
           ["@tapper/api", "workspace:packages/api"],\
+          ["@tapper/prisma", "workspace:packages/prisma"],\
           ["@types/cors", "npm:2.8.19"],\
           ["@types/express", "npm:4.17.23"],\
           ["@types/node", "npm:20.19.0"],\
           ["cors", "npm:2.8.5"],\
           ["dotenv", "npm:16.5.0"],\
           ["express", "npm:4.21.2"],\
-          ["ts-node", "virtual:610df937387d55a0dfda8686ec10292f6ebb96a478b1153e5b06b22e93e9f33e43958d0ea992b8e0ddc22f9a5ead5cb298f8dc8d288f105822ecf70a1336bee4#npm:10.9.2"],\
+          ["ts-node", "virtual:aa9f47ad1536247d128f99d8dba7ef6f959e3cf0d58f4edc6c303ef81a61c051c0b6a334bfd9723e23b37f2baf7b012d17b82c144058761209be2586f9399340#npm:10.9.2"],\
           ["ts-node-dev", "virtual:610df937387d55a0dfda8686ec10292f6ebb96a478b1153e5b06b22e93e9f33e43958d0ea992b8e0ddc22f9a5ead5cb298f8dc8d288f105822ecf70a1336bee4#npm:2.0.0"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"]\
         ],\
@@ -1511,7 +1512,7 @@ const RAW_RUNTIME_STATE =
           ["esprima", "npm:4.0.1"],\
           ["prisma", "npm:5.10.2"],\
           ["supports-color", "npm:10.0.0"],\
-          ["ts-node", "virtual:610df937387d55a0dfda8686ec10292f6ebb96a478b1153e5b06b22e93e9f33e43958d0ea992b8e0ddc22f9a5ead5cb298f8dc8d288f105822ecf70a1336bee4#npm:10.9.2"],\
+          ["ts-node", "virtual:aa9f47ad1536247d128f99d8dba7ef6f959e3cf0d58f4edc6c303ef81a61c051c0b6a334bfd9723e23b37f2baf7b012d17b82c144058761209be2586f9399340#npm:10.9.2"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"]\
         ],\
         "linkType": "SOFT"\
@@ -4446,8 +4447,8 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:610df937387d55a0dfda8686ec10292f6ebb96a478b1153e5b06b22e93e9f33e43958d0ea992b8e0ddc22f9a5ead5cb298f8dc8d288f105822ecf70a1336bee4#npm:10.9.2", {\
-        "packageLocation": "./.yarn/__virtual__/ts-node-virtual-50cbfb2423/3/.yarn/berry/cache/ts-node-npm-10.9.2-3f3890b9ac-10c0.zip/node_modules/ts-node/",\
+      ["virtual:aa9f47ad1536247d128f99d8dba7ef6f959e3cf0d58f4edc6c303ef81a61c051c0b6a334bfd9723e23b37f2baf7b012d17b82c144058761209be2586f9399340#npm:10.9.2", {\
+        "packageLocation": "./.yarn/__virtual__/ts-node-virtual-7588da3a16/3/.yarn/berry/cache/ts-node-npm-10.9.2-3f3890b9ac-10c0.zip/node_modules/ts-node/",\
         "packageDependencies": [\
           ["@cspotcode/source-map-support", "npm:0.8.1"],\
           ["@swc/core", null],\
@@ -4466,7 +4467,7 @@ const RAW_RUNTIME_STATE =
           ["create-require", "npm:1.1.1"],\
           ["diff", "npm:4.0.2"],\
           ["make-error", "npm:1.3.6"],\
-          ["ts-node", "virtual:610df937387d55a0dfda8686ec10292f6ebb96a478b1153e5b06b22e93e9f33e43958d0ea992b8e0ddc22f9a5ead5cb298f8dc8d288f105822ecf70a1336bee4#npm:10.9.2"],\
+          ["ts-node", "virtual:aa9f47ad1536247d128f99d8dba7ef6f959e3cf0d58f4edc6c303ef81a61c051c0b6a334bfd9723e23b37f2baf7b012d17b82c144058761209be2586f9399340#npm:10.9.2"],\
           ["typescript", "patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"],\
           ["v8-compile-cache-lib", "npm:3.0.1"],\
           ["yn", "npm:3.1.1"]\
