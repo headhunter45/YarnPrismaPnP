@@ -33,39 +33,6 @@ app.get('/api/films', async (req: Request, res: Response) => {
   }
 });
 
-// Get film by ID
-app.get('/api/films/:id', async (req: Request, res: Response) => {
-  try {
-    const film = await prisma.film.findUnique({
-      where: {
-        film_id: parseInt(req.params.id)
-      },
-      include: {
-        language_film_language_idTolanguage: true,
-        film_category: {
-          include: {
-            category: true
-          }
-        },
-        film_actor: {
-          include: {
-            actor: true
-          }
-        }
-      }
-    });
-
-    if (!film) {
-      return res.status(404).json({ error: 'Film not found' });
-    }
-
-    res.json(film);
-  } catch (error) {
-    console.error('Error fetching film:', error);
-    res.status(500).json({ error: 'Failed to fetch film' });
-  }
-});
-
 // Search films by title
 app.get('/api/films/search', async (req: Request, res: Response) => {
   const { title } = req.query;
@@ -99,6 +66,39 @@ app.get('/api/films/search', async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error searching films:', error);
     res.status(500).json({ error: 'Failed to search films' });
+  }
+});
+
+// Get film by ID
+app.get('/api/films/:id', async (req: Request, res: Response) => {
+  try {
+    const film = await prisma.film.findUnique({
+      where: {
+        film_id: parseInt(req.params.id)
+      },
+      include: {
+        language_film_language_idTolanguage: true,
+        film_category: {
+          include: {
+            category: true
+          }
+        },
+        film_actor: {
+          include: {
+            actor: true
+          }
+        }
+      }
+    });
+
+    if (!film) {
+      return res.status(404).json({ error: 'Film not found' });
+    }
+
+    res.json(film);
+  } catch (error) {
+    console.error('Error fetching film:', error);
+    res.status(500).json({ error: 'Failed to fetch film' });
   }
 });
 
