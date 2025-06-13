@@ -1,4 +1,4 @@
-import { PrismaClient, film_rating } from '@prisma/client';
+import { PrismaClient, film_rating } from '../src/generated';
 
 const prisma = new PrismaClient();
 
