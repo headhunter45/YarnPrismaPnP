@@ -2,10 +2,11 @@
   "name": "@tapper/prisma",
   "version": "1.0.0",
   "private": true,
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "generate": "pnpify prisma generate",
-    "seed": "pnpify ts-node prisma/seed.ts",
+    "seed": "pnpify ts-node src/seed.ts",
     "reset": "pnpify prisma migrate reset --force"
   },
   "dependencies": {

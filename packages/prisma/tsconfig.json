@@ -2,7 +2,12 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "."
+    "rootDir": "src",
+    "baseUrl": ".",
+    "composite": true,
+    "declaration": true
   },
-  "include": ["prisma/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 } 
