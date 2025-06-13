@@ -5,7 +5,8 @@
     "rootDir": "src",
     "baseUrl": ".",
     "composite": true,
-    "declaration": true
+    "declaration": true,
+    "preserveSymlinks": true
   },
   "include": [
     "src/**/*"

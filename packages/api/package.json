@@ -2,11 +2,11 @@
   "name": "@tapper/api",
   "version": "1.0.0",
   "private": true,
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js",
+    "build": "tsc --build",
+    "start": "node --require ../../.pnp.cjs ./dist/index.js",
     "ts:check": "tsc --noEmit"
   },
   "dependencies": {

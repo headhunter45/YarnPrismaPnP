@@ -2,10 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": ".",
+    "rootDir": "src",
     "baseUrl": ".",
     "paths": {
-      "*": ["./.yarn/__virtual__/*"]
+      "@tapper/*": ["../*/src"]
     }
   },
   "include": ["src/**/*"],
