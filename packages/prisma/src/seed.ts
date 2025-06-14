@@ -13,18 +13,25 @@ async function main() {
   ].map(name => ({ name }));
 
   console.log('📝 Creating categories...');
-  for (const category of categories) {
-    await prisma.category.create({ data: category });
-  }
+  await prisma.category.createMany({
+    data: categories,
+    skipDuplicates: true
+  });
 
   // Create language (English)
   console.log('🌐 Creating language...');
-  const language = await prisma.language.create({
-    data: {
-      name: 'English',
-      last_update: new Date()
-    }
+  let language = await prisma.language.findFirst({
+    where: { name: 'English' }
   });
+
+  if (!language) {
+    language = await prisma.language.create({
+      data: {
+        name: 'English',
+        last_update: new Date()
+      }
+    });
+  }
 
   // Create films
   console.log('🎬 Creating films...');
@@ -54,12 +61,17 @@ async function main() {
       rating: film_rating.G,
       special_features: 'Trailers,Deleted Scenes',
       last_update: new Date()
-    },
-    // Add more films as needed
+    }
   ];
 
   for (const film of films) {
-    await prisma.film.create({ data: film });
+    const existingFilm = await prisma.film.findFirst({
+      where: { title: film.title }
+    });
+
+    if (!existingFilm) {
+      await prisma.film.create({ data: film });
+    }
   }
 
   // Create actors
@@ -79,50 +91,60 @@ async function main() {
       first_name: 'ED',
       last_name: 'CHASE',
       last_update: new Date()
-    },
-    // Add more actors as needed
+    }
   ];
 
-  for (const actor of actors) {
-    await prisma.actor.create({ data: actor });
-  }
+  await prisma.actor.createMany({
+    data: actors,
+    skipDuplicates: true
+  });
 
   // Create film categories
   console.log('🏷️ Creating film categories...');
   const allFilms = await prisma.film.findMany();
   const allCategories = await prisma.category.findMany();
 
-  // Assign categories to films
+  // Prepare film categories data
+  const filmCategories = [];
   for (const film of allFilms) {
-    const selectedCategories = allCategories.slice(0, 2); // Assign first two categories to each film
+    const selectedCategories = allCategories.slice(0, 2);
     for (const category of selectedCategories) {
-      await prisma.film_category.create({
-        data: {
-          film_id: film.film_id,
-          category_id: category.category_id,
-          last_update: new Date()
-        }
+      filmCategories.push({
+        film_id: film.film_id,
+        category_id: category.category_id,
+        last_update: new Date()
       });
     }
   }
+
+  // Create film categories in bulk
+  await prisma.film_category.createMany({
+    data: filmCategories,
+    skipDuplicates: true
+  });
 
   // Create film actors
   console.log('🎭 Creating film actors...');
   const allActors = await prisma.actor.findMany();
 
-  // Assign actors to films
+  // Prepare film actors data
+  const filmActors = [];
   for (const film of allFilms) {
-    const selectedActors = allActors.slice(0, 3); // Assign first three actors to each film
+    const selectedActors = allActors.slice(0, 3);
     for (const actor of selectedActors) {
-      await prisma.film_actor.create({
-        data: {
-          film_id: film.film_id,
-          actor_id: actor.actor_id,
-          last_update: new Date()
-        }
+      filmActors.push({
+        film_id: film.film_id,
+        actor_id: actor.actor_id,
+        last_update: new Date()
       });
     }
   }
+
+  // Create film actors in bulk
+  await prisma.film_actor.createMany({
+    data: filmActors,
+    skipDuplicates: true
+  });
 
   console.log('✅ Seed completed successfully!');
 }

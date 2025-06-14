@@ -226,7 +226,6 @@ __metadata:
   resolution: "@tapper/prisma@workspace:packages/prisma"
   dependencies:
     "@prisma/client": "npm:5.10.2"
-    "@types/copyfiles": "npm:^2"
     "@types/esprima": "npm:^4"
     "@types/node": "npm:^20.11.24"
     "@yarnpkg/pnpify": "npm:^4.1.5"
@@ -293,13 +292,6 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/2e1cdba2c410f25649e77856505cd60223250fa12dff7a503e492208dbfdd25f62859918f28aba95315251fd1f5e1ffbfca1e25e73037189ab85dd3f8d0a148c
-  languageName: node
-  linkType: hard
-
-"@types/copyfiles@npm:^2":
-  version: 2.4.4
-  resolution: "@types/copyfiles@npm:2.4.4"
-  checksum: 10c0/c57d13c4a4fa85ba052cce3921cc73624a64df40077e2fa9ba704ddf43a2c342e151c0e090531e3366dc5545cc2e48649933aaf501070923f11374fac42f9e2a
   languageName: node
   linkType: hard
 

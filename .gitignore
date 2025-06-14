@@ -52,3 +52,7 @@ pids
 packages/*/dist
 packages/*/.env
 packages/*/node_modules
+
+# TypeScript
+tsconfig.tsbuildinfo
+.tsbuildinfo

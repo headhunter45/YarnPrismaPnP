@@ -150,10 +150,6 @@ const RAW_RUNTIME_STATE =
       "npm:3.4.38"\
     ],\
     [\
-      "@types/copyfiles",\
-      "npm:2.4.4"\
-    ],\
-    [\
       "@types/cors",\
       "npm:2.8.19"\
     ],\
@@ -1580,7 +1576,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@prisma/client", "virtual:aa9f47ad1536247d128f99d8dba7ef6f959e3cf0d58f4edc6c303ef81a61c051c0b6a334bfd9723e23b37f2baf7b012d17b82c144058761209be2586f9399340#npm:5.10.2"],\
           ["@tapper/prisma", "workspace:packages/prisma"],\
-          ["@types/copyfiles", "npm:2.4.4"],\
           ["@types/esprima", "npm:4.0.6"],\
           ["@types/node", "npm:20.19.0"],\
           ["@yarnpkg/pnpify", "npm:4.1.5"],\
@@ -1658,15 +1653,6 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/connect", "npm:3.4.38"],\
           ["@types/node", "npm:24.0.1"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["@types/copyfiles", [\
-      ["npm:2.4.4", {\
-        "packageLocation": "../../.yarn/berry/cache/@types-copyfiles-npm-2.4.4-ac49085aed-10c0.zip/node_modules/@types/copyfiles/",\
-        "packageDependencies": [\
-          ["@types/copyfiles", "npm:2.4.4"]\
         ],\
         "linkType": "HARD"\
       }]\

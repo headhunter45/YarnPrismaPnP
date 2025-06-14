@@ -6,8 +6,14 @@
   "scripts": {
     "build": "yarn generate && yarn tsc && copyfiles -u 1 \"src/generated/**\" dist",
     "generate": "pnpify prisma generate",
-    "seed": "pnpify ts-node src/seed.ts",
-    "reset": "pnpify prisma migrate reset --force"
+    "seed": "tsc && node dist/seed.js",
+    "reset": "pnpify prisma migrate reset --force",
+    "test": "yarn test:setup",
+    "test:setup": "tsc && node dist/test-setup.js",
+    "test:generate": "tsc && node dist/test-setup.js generate",
+    "test:build": "tsc && node dist/test-setup.js build",
+    "test:reset": "tsc && node dist/test-setup.js reset",
+    "test:seed": "tsc && node dist/test-setup.js seed"
   },
   "dependencies": {
     "@prisma/client": "5.10.2"
