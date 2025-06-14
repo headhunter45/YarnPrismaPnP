@@ -33,37 +33,62 @@ yarn set version 4.x
 In `.yarnrc.yml`:
 ```yaml
 nodeLinker: pnp
-pnpMode: loose
-pnpFallbackMode: all
+```
 
-packageExtensions:
-  "@prisma/client@*":
-    peerDependencies:
-      "typescript": "*"
+TODO: Check which options are needed.
+Create `tsconfig.base.json`:
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "lib": ["ES2020", "DOM"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "sourceMap": true,
+    "composite": true,
+    "declarationMap": true
+  },
+  "exclude": ["node_modules"]
+}
 ```
 
 ### 2. Set up Prisma Workspace
 
+TODO: Check the devDependencies here.
 In `packages/prisma/package.json`:
 ```json
 {
   "name": "@your-project/prisma",
   "version": "1.0.0",
   "private": true,
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "yarn generate && yarn tsc && copyfiles -u 1 \"src/generated/**\" dist",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
     "generate": "pnpify prisma generate",
-    "seed": "pnpify ts-node prisma/seed.ts",
-    "reset": "pnpify prisma migrate reset --force"
+    "reset": "pnpify prisma migrate reset --force",
+    "seed": "tsc && node dist/seed.js"
   },
   "dependencies": {
     "@prisma/client": "5.x.x"
   },
   "devDependencies": {
+    "@types/esprima": "^4",
+    "@types/node": "^20.11.24",
     "@yarnpkg/pnpify": "^4.1.5",
+    "copyfiles": "^2.4.1",
     "prisma": "5.x.x",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   }
 }
 ```
@@ -83,6 +108,61 @@ Create `packages/prisma/src/index.ts`:
 export { PrismaClient } from './generated';
 ```
 
+Create `packages/prisma/src/seed.ts`:
+```typescript
+import { PrismaClient, film_rating } from './generated';
+
+const prisma = new PrismaClient();
+
+async function main() {
+  console.log('🌱 Starting database seed...');
+
+  // Actual seed code here. Create your objects and insert them.
+
+  console.log('✅ Seed completed successfully!');
+}
+
+main()
+  .catch((e) => {
+    console.error('❌ Error during seed:', e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
+```
+
+TODO: determine which of these needs to be set.
+Create `packages/prisma/tsconfig.json`: 
+```json
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "preserveSymlinks": true,
+    "types": ["node"]
+  },
+  "include": [
+    "src/**/*"
+  ]
+}
+```
+
+Create `packages/prisma/.env`:
+```shell
+DB_NAME=tapper
+DB_USER=tapper_user
+DB_PASSWORD=test1234
+DB_HOST=localhost
+DB_PORT=3306
+# Database connection string for Prisma
+DATABASE_URL="mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}"
+```
+
+TODO: Create initial migration?
+
 ### 3. Set up API Workspace
 
 In `packages/api/package.json`:
@@ -91,16 +171,50 @@ In `packages/api/package.json`:
   "name": "@your-project/api",
   "version": "1.0.0",
   "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+   "build": "tsc --build",
+   "clean": "rm -rf dist tsconfig.tsbuildinfo",
+   "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts",
+   "start": "node --require ../../.pnp.cjs ./dist/index.js"
+  },
   "dependencies": {
     "@prisma/client": "5.x.x",
     "@your-project/prisma": "1.0.0",
     "express": "^4.18.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.18.3",
+    "ts-node": "^10.x.x",
+    "ts-node-dev": "^2.x.x",
+    "typescript": "^5.3.3"
   },
   "dependenciesMeta": {
     "@prisma/client": {
       "unplugged": true
     }
   }
+}
+```
+
+TODO: Check if the references section is necessarry.
+TODO: determine which of these needs to be set.
+Create `packages/api/tsconfig.json`:
+```json
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@tapper/*": ["../*/src"]
+    }
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../prisma" }
+  ]
 }
 ```
 
@@ -113,7 +227,7 @@ import { PrismaClient } from '@your-project/prisma';
 
 ```bash
 cd packages/prisma
-yarn pnpify prisma generate
+yarn generate
 ```
 
 ## Common Issues and Solutions
@@ -153,7 +267,7 @@ Make sure your `tsconfig.json` includes the necessary paths:
 
 2. **Dependencies**
    - Use `@prisma/client` in the Prisma workspace only
-   - Other workspaces should depend on your Prisma workspace
+   - Other workspaces should depend on your Prisma workspace `@your-projecttapper/prisma`
    - Keep `@prisma/client` unplugged in workspaces that use it
 
 3. **Development Workflow**
@@ -180,7 +294,6 @@ Make sure your `tsconfig.json` includes the necessary paths:
 
 ## Notes
 
-- This setup uses Yarn 4's PnP features but keeps it in "loose" mode for better compatibility
 - The solution avoids using deprecated or removed features from Yarn 2/3
 - The generated client is placed in a predictable location that works with PnP
 - TypeScript support is maintained throughout the setup
@@ -283,41 +396,3 @@ The `yarn reset` command will:
    yarn prisma migrate status
    ```
    Shows which migrations have been applied to the database.
-
-### Testing the Setup
-
-To verify that your Prisma setup is working correctly, you can run the test script from either the project root or the prisma package:
-
-From the project root:
-```bash
-yarn prisma:test-setup
-```
-
-Or from the prisma package:
-```bash
-cd packages/prisma
-yarn test-setup
-```
-
-This script will:
-1. Clean up any existing generated files
-2. Run the following commands in sequence:
-   - `yarn generate` - Generates the Prisma Client
-   - `yarn reset` - Resets the database and applies migrations
-   - `yarn seed` - Seeds the database with initial data
-3. Verify that:
-   - The Prisma Client was generated correctly
-   - All required files are present
-   - The database can be reset and seeded
-
-This is useful for:
-- Verifying your setup after installation
-- Testing after making changes to the schema
-- Ensuring the development environment is properly configured
-- CI/CD pipelines to verify the setup
-
-The test will fail if:
-- The Prisma Client generation fails
-- Required files are missing
-- Database operations fail
-- The seed script encounters errors 
