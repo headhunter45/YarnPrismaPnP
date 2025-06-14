@@ -7,15 +7,16 @@
     "packages/*"
   ],
   "scripts": {
-    "api:dev": "yarn workspace @tapper/api dev",
     "api:build": "yarn workspace @tapper/api build",
+    "api:dev": "yarn workspace @tapper/api dev",
     "api:start": "yarn workspace @tapper/api start",
+    "clean": "yarn workspaces foreach -Ap run clean",
     "prisma:generate": "yarn workspace @tapper/prisma generate",
-    "prisma:seed": "yarn workspace @tapper/prisma seed",
     "prisma:reset": "yarn workspace @tapper/prisma reset",
+    "prisma:seed": "yarn workspace @tapper/prisma seed",
     "prisma:test": "yarn workspace @tapper/prisma test",
-    "prisma:test:generate": "yarn workspace @tapper/prisma test:generate",
     "prisma:test:build": "yarn workspace @tapper/prisma test:build",
+    "prisma:test:generate": "yarn workspace @tapper/prisma test:generate",
     "prisma:test:reset": "yarn workspace @tapper/prisma test:reset",
     "prisma:test:seed": "yarn workspace @tapper/prisma test:seed"
   },

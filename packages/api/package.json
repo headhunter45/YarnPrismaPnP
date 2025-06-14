@@ -4,8 +4,9 @@
   "private": true,
   "main": "dist/index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts",
     "build": "tsc --build",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
+    "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts",
     "start": "node --require ../../.pnp.cjs ./dist/index.js",
     "ts:check": "tsc --noEmit"
   },
