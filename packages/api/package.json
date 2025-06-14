@@ -11,7 +11,7 @@
     "ts:check": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "5.10.2",
+    "@prisma/client": "6.9.0",
     "@tapper/prisma": "1.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

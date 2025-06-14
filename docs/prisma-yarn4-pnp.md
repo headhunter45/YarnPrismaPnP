@@ -76,14 +76,14 @@ In `packages/prisma/package.json`:
     "seed": "tsc && node dist/seed.js"
   },
   "dependencies": {
-    "@prisma/client": "5.x.x"
+    "@prisma/client": "6.9.0"
   },
   "devDependencies": {
     "@types/esprima": "^4",
     "@types/node": "^20.11.24",
     "@yarnpkg/pnpify": "^4.1.5",
     "copyfiles": "^2.4.1",
-    "prisma": "5.x.x",
+    "prisma": "6.9.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
@@ -179,7 +179,7 @@ In `packages/api/package.json`:
    "start": "node --require ../../.pnp.cjs ./dist/index.js"
   },
   "dependencies": {
-    "@prisma/client": "5.x.x",
+    "@prisma/client": "6.9.0",
     "@your-project/prisma": "1.0.0",
     "express": "^4.18.3"
   },
