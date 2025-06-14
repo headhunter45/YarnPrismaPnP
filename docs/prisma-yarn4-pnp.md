@@ -183,4 +183,103 @@ Make sure your `tsconfig.json` includes the necessary paths:
 - This setup uses Yarn 4's PnP features but keeps it in "loose" mode for better compatibility
 - The solution avoids using deprecated or removed features from Yarn 2/3
 - The generated client is placed in a predictable location that works with PnP
-- TypeScript support is maintained throughout the setup 
+- TypeScript support is maintained throughout the setup
+
+## Using the Prisma Configuration
+
+### Initial Setup for New Developers
+
+1. **Prerequisites**:
+   - MySQL instance running
+   - User with `GRANT ALL ON *.*` permissions
+   - Correct `DATABASE_URL` in `.env` file
+
+2. **First-time Setup**:
+```bash
+# Install dependencies
+yarn install
+
+# Generate Prisma Client
+yarn generate
+
+# Create and apply migrations, then seed the database
+yarn reset
+```
+
+The `yarn reset` command will:
+- Create the database if it doesn't exist
+- Apply all migrations to create the schema
+- Run the seed script to populate initial data
+
+### Development Workflow
+
+1. **Making Schema Changes**:
+   When you modify the `schema.prisma` file:
+   ```bash
+   yarn prisma migrate dev
+   ```
+   This will:
+   - Create new migration files
+   - Apply pending migrations
+   - Regenerate the Prisma Client
+   - Run the seed script (if configured)
+
+2. **Resetting Database**:
+   To reset the database to a clean state:
+   ```bash
+   yarn reset
+   ```
+   This is useful when you want to:
+   - Start fresh with a clean database
+   - Ensure your seed data is up to date
+   - Test database initialization
+
+3. **Production Deployment**:
+   When deploying to production:
+   ```bash
+   yarn prisma migrate deploy
+   ```
+   This will:
+   - Apply pending migrations
+   - Not create new migration files
+   - Not modify the schema
+   - Not regenerate the Prisma Client
+
+### Understanding Migration Commands
+
+1. **`prisma migrate dev`**:
+   - Used during development
+   - Creates new migration files
+   - Applies pending migrations
+   - Regenerates Prisma Client
+   - Runs seed script
+   - Should NOT be used in production
+
+2. **`prisma migrate deploy`**:
+   - Used in production
+   - Applies pending migrations
+   - Does NOT create new migration files
+   - Does NOT modify schema
+   - Does NOT regenerate Prisma Client
+   - Safe to run multiple times
+
+### Common Development Tasks
+
+1. **Adding New Data**:
+   - Modify `seed.ts` to add new seed data
+   - Run `yarn reset` to apply changes
+
+2. **Modifying Schema**:
+   - Update `schema.prisma`
+   - Run `yarn prisma migrate dev`
+   - Test changes locally
+
+3. **Resetting to Clean State**:
+   - Run `yarn reset`
+   - Database will be recreated with fresh data
+
+4. **Checking Migration Status**:
+   ```bash
+   yarn prisma migrate status
+   ```
+   Shows which migrations have been applied to the database. 
