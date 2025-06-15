@@ -58,8 +58,6 @@ export async function verifyGeneratedFiles() {
     'index.d.ts',
     'edge.js',
     'edge.d.ts',
-    'wasm.js',
-    'wasm.d.ts',
     'default.js',
     'default.d.ts',
     'package.json',
@@ -67,7 +65,6 @@ export async function verifyGeneratedFiles() {
     'runtime/library.d.ts',
     'runtime/edge.js',
     'runtime/edge-esm.js',
-    'runtime/wasm.js',
     'runtime/index-browser.js',
     'runtime/index-browser.d.ts'
   ];
@@ -88,7 +85,6 @@ export async function verifyGeneratedFiles() {
     'runtime/library.js',
     'runtime/edge.js',
     'runtime/edge-esm.js',
-    'runtime/wasm.js',
     'runtime/index-browser.js'
   ];
 
@@ -114,8 +110,6 @@ export async function verifyDistFiles() {
     'generated/index.d.ts',
     'generated/edge.js',
     'generated/edge.d.ts',
-    'generated/wasm.js',
-    'generated/wasm.d.ts',
     'generated/default.js',
     'generated/default.d.ts',
     'generated/package.json',
@@ -123,7 +117,6 @@ export async function verifyDistFiles() {
     'generated/runtime/library.d.ts',
     'generated/runtime/edge.js',
     'generated/runtime/edge-esm.js',
-    'generated/runtime/wasm.js',
     'generated/runtime/index-browser.js',
     'generated/runtime/index-browser.d.ts'
   ];
@@ -140,7 +133,6 @@ export async function verifyDistFiles() {
     'generated/runtime/library.js',
     'generated/runtime/edge.js',
     'generated/runtime/edge-esm.js',
-    'generated/runtime/wasm.js',
     'generated/runtime/index-browser.js'
   ];
 

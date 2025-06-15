@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "yarn generate && yarn tsc && copyfiles -u 1 \"src/generated/**\" dist",
-    "clean": "rm -rf dist tsconfig.tsbuildinfo",
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
     "generate": "pnpify prisma generate",
     "reset": "pnpify prisma migrate reset --force",
     "seed": "tsc && node dist/seed.js",
@@ -25,6 +25,7 @@
     "@yarnpkg/pnpify": "^4.1.5",
     "copyfiles": "^2.4.1",
     "prisma": "6.9.0",
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },

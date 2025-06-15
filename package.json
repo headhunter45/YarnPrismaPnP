@@ -10,7 +10,9 @@
     "api:build": "yarn workspace @tapper/api build",
     "api:dev": "yarn workspace @tapper/api dev",
     "api:start": "yarn workspace @tapper/api start",
+    "build": "yarn workspaces foreach -Apt run build",
     "clean": "yarn workspaces foreach -Ap run clean",
+    "prisma:build": "yarn workspace @tapper/prisma build",
     "prisma:generate": "yarn workspace @tapper/prisma generate",
     "prisma:reset": "yarn workspace @tapper/prisma reset",
     "prisma:seed": "yarn workspace @tapper/prisma seed",
@@ -19,10 +21,5 @@
     "prisma:test:generate": "yarn workspace @tapper/prisma test:generate",
     "prisma:test:reset": "yarn workspace @tapper/prisma test:reset",
     "prisma:test:seed": "yarn workspace @tapper/prisma test:seed"
-  },
-  "devDependencies": {
-    "@yarnpkg/pnpify": "^4.1.5",
-    "esprima": "^4.0.1",
-    "supports-color": "^10.0.0"
   }
 }
